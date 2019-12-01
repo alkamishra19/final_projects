@@ -1,5 +1,11 @@
 # IS 590PR Final Project - Type 2
 ### Type 2 project for IBM HR data.
+
+### Team members:
+> Alka Mishra (alkamishra19),
+> Kunal Pachori (kunalpachori),
+> Urvashi Rawat (Urvashi0903)
+
 The details for the project are as below: 
 
 ### Hypothesis 1 :
