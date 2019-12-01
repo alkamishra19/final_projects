@@ -10,6 +10,7 @@ def print_value(a, b):
     >>> print_value(value_1, 0)
     9
     """
+    print(a+b)
     return a+b
 
 
