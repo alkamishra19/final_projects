@@ -3,9 +3,7 @@
 
 
 def print_value():
+    """
+    >>> print_value()
+    """
     print('Final Project')
-
-
-"""
->>> print_value()
-"""
