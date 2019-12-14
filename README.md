@@ -13,6 +13,10 @@ If the salary of the employee is less than expected, it leads to attrition
 
 We have two datasets where in we would merge them based on the age and the education level. One of the datasets has the actual income and the other has a generic expected income.
 
+#### Analysis Results:
+##### Entire data with attrition 'Yes' and 'No'
+![alt text](C:\Users\kunal\Desktop\Analysis_1.png)
+
 ### Hypothesis 2 : 
 Relationship between income and age is stronger than that between income and education.
 
