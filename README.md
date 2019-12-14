@@ -16,6 +16,12 @@ We have two datasets where in we would merge them based on the age and the educa
 #### Analysis Results:
 ##### Entire data with attrition 'Yes' and 'No'
 ![Salary vs Attrition](https://github.com/kunalpachori/final_projects/blob/master/Analysis/Analysis_1.png)
+![Salary vs Attrition](https://github.com/kunalpachori/final_projects/blob/master/Analysis/Analysis_1b.png)
+##### Records with attrition 'Yes' and 'No' individually based on salary either greater than or less than $50k
+![Salary vs Attrition](https://github.com/kunalpachori/final_projects/blob/master/Analysis/Analysis_1aa.png)
+![Salary vs Attrition](https://github.com/kunalpachori/final_projects/blob/master/Analysis/Analysis_1bb.png)
+##### Percentage of attrition 
+![Salary vs Attrition](https://github.com/kunalpachori/final_projects/blob/master/Analysis/Count.png)
 
 ### Hypothesis 2 : 
 Relationship between income and age is stronger than that between income and education.
