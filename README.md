@@ -68,6 +68,9 @@ https://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.data - Inc
 https://www.kaggle.com/jonavery/incomes-by-career-and-gender - Incomes by position and gender from Bureau of Labor Statistics (BLS)
 https://www.kaggle.com/goldenoakresearch/us-acs-mortgage-equity-loans-rent-statistics - Rent/Marital status/Mean salary/Expenses etc.
 
+### Citation:
+https://rpubs.com/asriram/278252
+
 ### Presentation link 
 https://drive.google.com/drive/folders/1SHsTVTkGNT8j1SX1q63ATiSeZpLsn_A0?usp=sharing
 
