@@ -37,19 +37,19 @@ a) Frequently travel
 b) Rarely travel
 c) No travel
 
-https://github.com/kunalpachori/final_projects/blob/master/Analysis/Analysis%203.4.png
+![Business Travel vs Attrition](https://github.com/kunalpachori/final_projects/blob/master/Analysis/Analysis%203.4.png)
 
 Thorough analysis helped us to idnetify that people who travel frequently leave the organization. 
 
 Analysis Graphs : 
 1. The travel category and attrition : 
-https://github.com/kunalpachori/final_projects/blob/master/Analysis/Analysis3.1.png
+![Business Travel vs Attrition](https://github.com/kunalpachori/final_projects/blob/master/Analysis/Analysis3.1.png)
 
 2. The percentage of people with different travel category : 
-https://github.com/kunalpachori/final_projects/blob/master/Analysis/Analysis3.2.png
+![Business Travel vs Attrition](https://github.com/kunalpachori/final_projects/blob/master/Analysis/Analysis3.2.png)
 
 3. The corelation between department and travel category that leads to attrition : 
-https://github.com/kunalpachori/final_projects/blob/master/Analysis/Analysis%203.3%20.png
+![Business Travel vs Attrition](https://github.com/kunalpachori/final_projects/blob/master/Analysis/Analysis%203.3%20.png)
 
 
 ### Dataset links:
