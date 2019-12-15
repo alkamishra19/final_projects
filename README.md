@@ -26,11 +26,20 @@ We have two datasets where in we would merge them based on the age and the educa
 ### Hypothesis 2 : 
 Relationship between income and age is stronger than that between income and education.
 
-
-
+Box plots representing data from the adult dataset as per age vs income and education vs income
+![Education vs Attrition](https://github.com/kunalpachori/final_projects/blob/master/Analysis/Analysis_2_1.png)
+![Education vs Attrition](https://github.com/kunalpachori/final_projects/blob/master/Analysis/Analysis_2_2.png)
+IBM distribution of employees based on education levels:
+![Education vs Attrition](https://github.com/kunalpachori/final_projects/blob/master/Analysis/Analysis_2_3.png)
+Box plots for IBM data with education level and age vs income
+![Education vs Attrition](https://github.com/kunalpachori/final_projects/blob/master/Analysis/Analysis_2_4.png)
+![Education vs Attrition](https://github.com/kunalpachori/final_projects/blob/master/Analysis/Analysis_2_5.png)
 
 ### Hypothesis 3 : 
 Do factors such as business travel , department have any effect on the decision of an employee leaving the organization.
+
+Heatmap for all the factors:
+![Factors vs Attrition](https://github.com/kunalpachori/final_projects/blob/master/Analysis/Analysis_3.png)
 
 We analyzed the dataset and learnt that there are three types of business travel : 
 a) Frequently travel 
