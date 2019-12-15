@@ -12,9 +12,9 @@ def read_dataframes():
         In this function,  we are are reading the required csv files from the dataset into dataframes.
         :return: We return the Ibm_df, adult_df as dataframes after reading the csv files.
     """
-    Ibm_df = pd.read_csv('C:/Users/kunal/Desktop/Docs_MSIM/Prog_Analytics/Assignments/Final_Project/IBM_HR_data.csv',
+    Ibm_df = pd.read_csv('IBM_HR_data.csv',
                          delimiter=',', encoding='UTF-8')
-    ad_df = pd.read_csv('C:/Users/kunal/Desktop/Docs_MSIM/Prog_Analytics/Assignments/Final_Project/adult.csv',
+    ad_df = pd.read_csv('adult.csv',
                         delimiter=',', header=None, encoding='UTF-8')
     ad_df.columns = ['Age', 'JobType', 'EmpID',
                      'EducationLevel', 'Level', 'MaritalStatus',
@@ -183,7 +183,7 @@ def total_values_travel(travel_df, frequency):
     :param frequency:
     :return:
 
-    >>> Ibm_df = pd.read_csv('C:/Users/kunal/Desktop/Docs_MSIM/Prog_Analytics/Assignments/Final_Project/IBM_HR_data.csv', delimiter=',', encoding='UTF-8')
+    >>> Ibm_df = pd.read_csv('IBM_HR_data.csv', delimiter=',', encoding='UTF-8')
     >>> freq = total_values_travel(Ibm_df, 'Travel_Frequently')
     >>> freq
     (277, 69, 208)
@@ -212,7 +212,7 @@ def attrition_values(df, freq, attr_value):
     :param attr_value:
     :return:
 
-    >>> Ibm_df = pd.read_csv('C:/Users/kunal/Desktop/Docs_MSIM/Prog_Analytics/Assignments/Final_Project/IBM_HR_data.csv', delimiter=',', encoding='UTF-8')
+    >>> Ibm_df = pd.read_csv('IBM_HR_data.csv', delimiter=',', encoding='UTF-8')
     >>> freq = attrition_values(Ibm_df, 'Travel_Rarely', 'Yes')
     >>> freq
     156
