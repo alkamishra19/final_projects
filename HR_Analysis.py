@@ -102,6 +102,25 @@ def club_similar_values(adult_df):
     return adult_df
 
 
+def create_boxplot(data, x_val, y_val, t):
+    """
+    This function creates a boxplot which is required for analysis of hypotheses 2
+    which focuses on majorly education level, age and their relation with Salary Earned
+    :param data: dataframe to be plotted based on x and y values
+    :param x_val: values to be plotted against
+    :param y_val: values to be plotted against
+    :return: Boxplot based on given values
+
+    >>> ad_df = pd.read_csv('adult.csv', delimiter=',', header=None, encoding='UTF-8')
+    >>> ad_df.columns = ['Age', 'JobType', 'EmpID', 'EducationLevel', 'Level', 'MaritalStatus', 'JobPosition', 'MaritalStatus_Desc', 'Race', 'Gender', 'Column_1', 'Column_2', 'Column_3', 'Location', 'ExpectedSalary']
+    >>> adult_df = ad_df[['Age', 'JobType', 'EducationLevel','Level', 'JobPosition', 'MaritalStatus','Location', 'Gender', 'ExpectedSalary']].sort_values(by='Age', ascending=True)
+    >>> ad_data = adult_df[['Age', 'EducationLevel', 'ExpectedSalary']].sort_values(by='Age', ascending=True)
+    >>> create_boxplot(ad_data, [0], [0], 'Test')
+    """
+    figure = px.box(data, x=x_val, y=y_val, title=t)
+    return figure.show()
+
+
 def probable_expected_salary(ad_df_private_US):
     """
         In this function, we are finding probable expected salary values based on age group degree, education field and gender.
@@ -354,28 +373,12 @@ if __name__ == '__main__':
     salary_data_less_attr = salary_attrition_analysis1(salary_less)
     salary_data_greater_attr = salary_attrition_analysis2(salary_greater)
 
-    salary_data_less = merged_dataframe[merged_dataframe['Probable Salary Value'] < 50]
-    salary_data_higher = merged_dataframe[merged_dataframe['Probable Salary Value'] >= 50]
-
-    title = "Salary vs Attrition (Expected less than 50k)"
-
-    title = "Salary vs Attrition (Expected more than 50k)"
-
     print("\n Attrition percentage of people with salary expectation less than or equal to 50k : \n")
     print(salary_data_less_attr)
     print("---------------------------------------------------------------------\n\n")
     print("\n Attrition percentage of people with salary expectation greater than 50k : \n")
     print(salary_data_greater_attr)
     print("---------------------------------------------------------------------\n\n")
-
-    salary_data_less_attr = salary_data_less[salary_data_less['Attrition'] == 'Yes']
-    salary_data_higher_attr = salary_data_higher[salary_data_higher['Attrition'] == 'Yes']
-
-    title = "Salary vs Attrition (Expected less than 50k)"
-    data_h1_b = salary_data_less_attr
-
-    title = "Salary vs Attrition (Expected more than 50k)"
-    data_h1_b = salary_data_higher_attr
 
     """
         Box plots for hypotheses 2.1 Age vs. Salary
@@ -384,6 +387,7 @@ if __name__ == '__main__':
     x = "ExpectedSalary"
     y = "Age"
     title = "Age by individual's earnings ($ >50K or <= 50K) based on adult dataset"
+    create_boxplot(ad_df_specific, x, y, title)
 
     """
         Box plot for hypotheses 2.2 Education vs. Salary
@@ -391,33 +395,7 @@ if __name__ == '__main__':
     x = "ExpectedSalary"
     y = "EducationLevel"
     title = "Salary Earned by Education Level after grouping adult data"
-
-    """
-        Box plot for hypotheses 2.3 Education vs. Salary
-    """
-    x = "Education"
-    y = "Salary Earned"
-    title = "Salary Earned by Education Level after grouping IBM HR data"
-
-    """
-        Box plot for hypotheses 2.4 Age vs. Salary
-    """
-    x = "Age"
-    y = "Salary Earned"
-    title = "Salary Earned by Age after grouping IBM HR data"
-
-    education_attr = merged_dataframe[['Education', 'Attrition']]
-    education_attr_y = education_attr[education_attr['Attrition'] == 'Yes'].groupby(by='Education').count()
-
-    """
-        Pie chart demonstrating distribution of IBM employees as per Education Level
-    """
-    labels = ['Upto 11th', 'Bachelors', 'Masters', 'Doctorate']
-    values = merged_dataframe.groupby(by='Education')['Education'].count()
-
-    fig_17 = go.Figure(
-        data=[go.Pie(labels=labels, values=values, title="Distribution of IBM employees by Education Level")])
-    # fig_17.show()
+    create_boxplot(ad_df_specific, x, y, title)
 
     # calculating percentages when attrition has happened in each category
     # for travel rarely
@@ -433,57 +411,56 @@ if __name__ == '__main__':
     print('Percentage of attrition for people who frequently travelled ', perc2, "%")
     print('Percentage of attrition for people who did not travel', perc3, "%")
 
-    Travel = ['Travel_Rarely', 'Travel_Frequently', 'Non-Travel']
-    fig_5 = go.Figure([go.Bar(x=Travel, y=[perc1, perc2, perc3])])
-    # fig_5.show()
-
-    Travel = ['Travel_Rarely', 'Travel_Frequently', 'Non-Travel']
-
-    fig_6 = go.Figure(data=[
-        go.Bar(name='Attrition_Yes', x=Travel, y=[total_values_travel(Ibm_df, 'Travel_Rarely')[1],
-                                                  total_values_travel(Ibm_df, 'Travel_Frequently')[1],
-                                                  total_values_travel(Ibm_df, 'Non-Travel')[1]]),
-        go.Bar(name='Attrition_No', x=Travel, y=[total_values_travel(Ibm_df, 'Travel_Rarely')[2],
-                                                 total_values_travel(Ibm_df, 'Travel_Frequently')[2],
-                                                 total_values_travel(Ibm_df, 'Non-Travel')[2]])])
-    # Change the bar mode
-    fig_6.update_layout(barmode='group')
-    # fig_6.show()
-
-    Age_Travel = Ibm_df[Ibm_df['BusinessTravel'] == 'Travel_Frequently']
-    Age_df = Age_Travel[Age_Travel['Attrition'] == 'Yes']
-    age_list = []
-    df_age_count = pd.DataFrame({'Count': Age_df.groupby(by='Department')['Department'].count()})
-    dept1 = 0
-    dept2 = 0
-    dept3 = 0
-    for ages in Age_df['Department']:
-        if ages == 'Human Resources':
-            dept1 += 1
-        elif ages == 'Research & Development':
-            dept2 += 1
-        elif ages == 'Sales':
-            dept3 += 1
-
     total_values = total_values_travel(Ibm_df, 'Travel_Rarely')[0] + total_values_travel(Ibm_df, 'Travel_Frequently')[
         0] + total_values_travel(Ibm_df, 'Non-Travel')[0]
     count_travel_rarely = total_values_travel(Ibm_df, 'Travel_Rarely')[0]
     count_travel_frequently = total_values_travel(Ibm_df, 'Travel_Frequently')[0]
     count_non_travel = total_values_travel(Ibm_df, 'Non-Travel')[0]
 
-    fig_7 = go.Figure(go.Sunburst(
-        labels=["Business Travel", "Rarely travel", "Frequently Travel", "No Travel", "Human Resource",
-                "Research and Development", "Sales"],
-        parents=["", "Business Travel", "Business Travel", "Business Travel", "Frequently Travel", "Frequently Travel",
-                 "Frequently Travel"],
-        values=[total_values, count_travel_rarely, count_travel_frequently, count_non_travel, dept1, dept2, dept3],
-    ))
-    # Update layout for tight margin
-    # See https://plot.ly/python/creating-and-updating-figures/
-    fig_7.update_layout(margin=dict(t=0, l=0, r=0, b=0))
+    d1 = Ibm_df[Ibm_df['DistanceFromHome'] < 25]
+    # when the distance > 25
+    d2 = Ibm_df[Ibm_df['DistanceFromHome'] > 25]
+    att_yes = 0
+    att_no = 0
+    total_att = 0
 
-    # fig_7.show()
+    for val1 in d1['Attrition']:
+        total_att += 1
+        if val1 == 'Yes':
+            att_yes += 1
+        elif val1 == 'No':
+            att_no += 1
 
-    data_row = [('A', 10), ('B', 20), ('C', 40)]
-    t2 = Table(rows=data_row, names=('Keys', 'Values'))
-    print(t2)
+    perecent1 = round(att_yes / total_att, 2)
+    percent2 = round(att_no / total_att, 2)
+
+    # print(perecent1 , percent2 )
+    # when the distance is less than 25
+    fig = px.scatter(d1, x='DistanceFromHome', y='Age', color="Attrition")
+    fig.show()
+    # when the distance is greater than 25
+    fig = px.scatter(d2, x='DistanceFromHome', y='Age', color="Attrition")
+    fig.show()
+    # when the distance is greater than 25
+    att_yes1 = 0
+    att_no1 = 0
+    total_att1 = 0
+
+    for val2 in d2['Attrition']:
+        total_att1 += 1
+        if val2 == 'Yes':
+            att_yes1 += 1
+        elif val2 == 'No':
+            att_no1 += 1
+
+    perecent3 = round(att_yes1 / total_att1, 2)
+    percent4 = round(att_no1 / total_att1, 2)
+
+    # displaying the distances for each
+    labels = ['Attrition when distance is less than 25', 'No attrition when distance is less than 25',
+              'Attrition when distance is more than 25', 'No attrition when distance is more than 25']
+    values = [perecent1, percent2, perecent3, percent4]
+
+    fig = go.Figure(data=[go.Pie(labels=labels, values=values)])
+    fig.show()
+
