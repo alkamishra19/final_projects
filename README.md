@@ -60,6 +60,17 @@ Analysis Graphs :
 3. The corelation between department and travel category that leads to attrition : 
 ![Business Travel vs Attrition](https://github.com/kunalpachori/final_projects/blob/master/Analysis/Analysis%203.3%20.png)
 
+### Hypothesis 4: 
+To analyze if the ‘distance from home’ a factor that leads to attrition. 
+
+1. When the distance from home is less than 25 
+https://github.com/kunalpachori/final_projects/blob/master/Analysis/Analysis%204.1.png
+
+2. When the distance from home is more than 25 
+https://github.com/kunalpachori/final_projects/blob/master/Analysis/Analysis%204.2.png
+
+3. Comparing the two to understand the percentage of people who stay and leave an organization
+https://github.com/kunalpachori/final_projects/blob/master/Analysis/Analysis%204.3%20.png 
 
 ### Dataset links:
 
