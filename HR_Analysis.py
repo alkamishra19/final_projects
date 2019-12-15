@@ -12,6 +12,11 @@ def read_dataframes():
         In this function,  we are are reading the required csv files from the dataset into dataframes.
         :return: We return the Ibm_df, adult_df as dataframes after reading the csv files.
 
+        >>> df_1, df_2 = read_dataframes()
+        >>> df_1.shape
+        (1470, 35)
+        >>> df_2.shape
+        (32563, 9)
     """
     Ibm_df = pd.read_csv('IBM_HR_data.csv',
                          delimiter=',', encoding='UTF-8')
@@ -147,6 +152,19 @@ def split_dataframe_for_analysis_1(merged_dataframe):
     """
         In this function, we are splitting the dataframe based on expected salary .
         :return: We return the sorted_dataframe after merging.
+
+        >>> Ibm_df, adult_df = read_dataframes()
+        >>> ad_df_private_US = filter_data(adult_df)
+        >>> ad_df_private_US = club_similar_values(ad_df_private_US)
+        >>> ad_dataframe = probable_expected_salary(ad_df_private_US)
+        >>> merged_dataframe = merge_datasets(Ibm_df, ad_dataframe)
+        >>> salary_less, salary_greater = split_dataframe_for_analysis_1(merged_dataframe)
+        >>> salary_less.shape
+        (494, 37)
+        >>> salary_greater.shape
+        (208, 37)
+        >>> salary_greater.shape > salary_less.shape
+        False
     """
     merged_dataframe['Salary Earned'] = merged_dataframe.MonthlyIncome * 12
     salary_split = merged_dataframe[merged_dataframe['Attrition'] == 'Yes']
@@ -161,6 +179,20 @@ def salary_attrition_analysis1(salary_less):
         In this function, we are splitting the dataframe based on expected salary .
         :return: We return the sorted_dataframe after merging.
 
+        >>> Ibm_df, adult_df = read_dataframes()
+        >>> ad_df_private_US = filter_data(adult_df)
+        >>> ad_df_private_US = club_similar_values(ad_df_private_US)
+        >>> ad_dataframe = probable_expected_salary(ad_df_private_US)
+        >>> merged_dataframe = merge_datasets(Ibm_df, ad_dataframe)
+        >>> salary_less, salary_greater = split_dataframe_for_analysis_1(merged_dataframe)
+        >>> salary_greater.shape
+        (208, 37)
+        >>> salary_less_df = salary_attrition_analysis1(salary_less)
+        >>> salary_less_df['Percentage']
+        Attrition  Is salary greater than expected
+        Yes        False                              63.29
+                   True                               36.71
+        Name: Percentage, dtype: float64
     """
     salary_data_less_attr = salary_less
 
@@ -187,6 +219,21 @@ def salary_attrition_analysis2(salary_less):
     """
         In this function, we are splitting the dataframe based on expected salary .
         :return: We return the sorted_dataframe after merging.
+
+        >>> Ibm_df, adult_df = read_dataframes()
+        >>> ad_df_private_US = filter_data(adult_df)
+        >>> ad_df_private_US = club_similar_values(ad_df_private_US)
+        >>> ad_dataframe = probable_expected_salary(ad_df_private_US)
+        >>> merged_dataframe = merge_datasets(Ibm_df, ad_dataframe)
+        >>> salary_less, salary_greater = split_dataframe_for_analysis_1(merged_dataframe)
+        >>> salary_greater.shape
+        (208, 37)
+        >>> salary_less_df = salary_attrition_analysis2(salary_less)
+        >>> salary_less_df['Percentage']
+        Attrition  Is salary less than expected
+        Yes        False                           36.71
+                   True                            63.29
+        Name: Percentage, dtype: float64
 
     """
     salary_data_less_attr = salary_less
@@ -271,6 +318,8 @@ def create_table():
        A     10
        B     20
        C     40
+    >>> create_table()
+    NameError: name 'Ibm_df' is not defined
     """
     t = Table()
     data_rows = [('Travel_Rarely',
