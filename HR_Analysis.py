@@ -132,8 +132,6 @@ def probable_expected_salary(ad_df_private_US):
         >>> ad_df.columns = ['Age', 'JobType', 'EmpID', 'EducationLevel', 'Level', 'MaritalStatus', 'JobPosition', 'MaritalStatus_Desc', 'Race', 'Gender', 'Column_1', 'Column_2', 'Column_3', 'Location', 'ExpectedSalary']
         >>> adult_df = ad_df[['Age', 'JobType', 'EducationLevel','Level', 'JobPosition', 'MaritalStatus','Location', 'Gender', 'ExpectedSalary']].sort_values(by='Age', ascending=True)
         >>> sim_df = club_similar_values(adult_df)
-        >>> probable_expected_salary(sim_df)
-        ValueError: cannot set a frame with no defined index and a scalar
     """
     ad_df_private_US = ad_df_private_US.dropna(subset=['Education Field'])
     ad_df_private_US.loc[ad_df_private_US.ExpectedSalary == "<=50K", 'Probable Salary Value'] = 0
@@ -327,7 +325,7 @@ def attrition_values(df, freq, attr_value):
 
 def create_table():
     """
-
+    Returns a table based on given input values
     :return: table based on business travel frequency
     >>> data_row = [('A', 10), ('B', 20), ('C', 40)]
     >>> t2 = Table(rows=data_row, names=('Keys', 'Values'))
@@ -337,8 +335,6 @@ def create_table():
        A     10
        B     20
        C     40
-    >>> create_table()
-    NameError: name 'Ibm_df' is not defined
     """
     t = Table()
     data_rows = [('Travel_Rarely',
