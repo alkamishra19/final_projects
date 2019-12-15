@@ -64,13 +64,13 @@ Analysis Graphs :
 To analyze if the ‘distance from home’ a factor that leads to attrition. 
 
 1. When the distance from home is less than 25 
-https://github.com/kunalpachori/final_projects/blob/master/Analysis/Analysis%204.1.png
+![Distance from home < 25](https://github.com/kunalpachori/final_projects/blob/master/Analysis/Analysis%204.1.png)
 
 2. When the distance from home is more than 25 
-https://github.com/kunalpachori/final_projects/blob/master/Analysis/Analysis%204.2.png
+![Distance from home > 25](https://github.com/kunalpachori/final_projects/blob/master/Analysis/Analysis%204.2.png)
 
 3. Comparing the two to understand the percentage of people who stay and leave an organization
-https://github.com/kunalpachori/final_projects/blob/master/Analysis/Analysis%204.3%20.png 
+![Distance from home and attrition](https://github.com/kunalpachori/final_projects/blob/master/Analysis/Analysis%204.3%20.png) 
 
 ### Dataset links:
 
