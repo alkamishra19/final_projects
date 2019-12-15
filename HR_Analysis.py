@@ -11,6 +11,7 @@ def read_dataframes():
     """
         In this function,  we are are reading the required csv files from the dataset into dataframes.
         :return: We return the Ibm_df, adult_df as dataframes after reading the csv files.
+
     """
     Ibm_df = pd.read_csv('IBM_HR_data.csv',
                          delimiter=',', encoding='UTF-8')
@@ -33,6 +34,13 @@ def filter_data(adult_df):
     In this function, we are are choosing adult dataset based on Job type, location and age.
     :param adult_df: dataframe with adult dataset containing values for individuals based on age and education
     :return: We return the ad_df_private_US after filtering.
+
+    >>> ad_df = pd.read_csv('adult.csv', delimiter=',', header=None, encoding='UTF-8')
+    >>> ad_df.columns = ['Age', 'JobType', 'EmpID', 'EducationLevel', 'Level', 'MaritalStatus', 'JobPosition', 'MaritalStatus_Desc', 'Race', 'Gender', 'Column_1', 'Column_2', 'Column_3', 'Location', 'ExpectedSalary']
+    >>> adult_df = ad_df[['Age', 'JobType', 'EducationLevel','Level', 'JobPosition', 'MaritalStatus','Location', 'Gender', 'ExpectedSalary']].sort_values(by='Age', ascending=True)
+    >>> df = filter_data(adult_df)
+    >>> df.shape
+    (18889, 9)
     """
     adult_df['JobType'] = adult_df['JobType'].str.strip()
     adult_df['Location'] = adult_df['Location'].str.strip()
@@ -51,33 +59,42 @@ def club_similar_values(adult_df):
     """
         In this function, we are are replacing Job position values with common positions in adult dataset so that the job positions remain common accross csv's.
         :return: We return the ad_df_private_US after replacement.
+
+        >>> ad_df = pd.read_csv('adult.csv', delimiter=',', header=None, encoding='UTF-8')
+        >>> ad_df.columns = ['Age', 'JobType', 'EmpID', 'EducationLevel', 'Level', 'MaritalStatus', 'JobPosition', 'MaritalStatus_Desc', 'Race', 'Gender', 'Column_1', 'Column_2', 'Column_3', 'Location', 'ExpectedSalary']
+        >>> adult_df = ad_df[['Age', 'JobType', 'EducationLevel','Level', 'JobPosition', 'MaritalStatus','Location', 'Gender', 'ExpectedSalary']].sort_values(by='Age', ascending=True)
+        >>> sim_df = club_similar_values(adult_df)
+        >>> sim_df.shape
+        (32563, 11)
+        >>> sim_df.shape != (32563, 13)
+        True
     """
-    ad_df_private_US.loc[ad_df_private_US.JobPosition == "Adm-clerical", 'Education Field'] = "Human Resources"
-    ad_df_private_US.loc[ad_df_private_US.JobPosition == "Farming-fishing", 'Education Field'] = "Life Sciences"
-    ad_df_private_US.loc[(ad_df_private_US.JobPosition == "Machine-op-inspct") | (
-            ad_df_private_US.JobPosition == "Tech-support"), 'Education Field'] = "Technical Degree"
-    ad_df_private_US.loc[
-        (ad_df_private_US.JobPosition == "Other-service") | (ad_df_private_US.JobPosition == "Transport-moving") | (
-                ad_df_private_US.JobPosition == "Handlers-cleaners"), 'Education Field'] = "Other"
-    ad_df_private_US.loc[(ad_df_private_US.JobPosition == "Protective-serv") | (
-            ad_df_private_US.JobPosition == "Prof-specialty"), 'Education Field'] = "Medical"
-    ad_df_private_US.loc[ad_df_private_US.JobPosition == "Sales", 'Education Field'] = "Management"
+    adult_df.loc[adult_df.JobPosition == "Adm-clerical", 'Education Field'] = "Human Resources"
+    adult_df.loc[adult_df.JobPosition == "Farming-fishing", 'Education Field'] = "Life Sciences"
+    adult_df.loc[(adult_df.JobPosition == "Machine-op-inspct") | (
+            adult_df.JobPosition == "Tech-support"), 'Education Field'] = "Technical Degree"
+    adult_df.loc[
+        (adult_df.JobPosition == "Other-service") | (adult_df.JobPosition == "Transport-moving") | (
+                adult_df.JobPosition == "Handlers-cleaners"), 'Education Field'] = "Other"
+    adult_df.loc[(adult_df.JobPosition == "Protective-serv") | (
+            adult_df.JobPosition == "Prof-specialty"), 'Education Field'] = "Medical"
+    adult_df.loc[adult_df.JobPosition == "Sales", 'Education Field'] = "Management"
 
-    ad_df_private_US.loc[(ad_df_private_US.EducationLevel == "10th") | (ad_df_private_US.EducationLevel == "11th") | (
-            ad_df_private_US.EducationLevel == "12th") | (ad_df_private_US.EducationLevel == "1st-4th") | (
-                                 ad_df_private_US.EducationLevel == "5th-6th")
-                         | (ad_df_private_US.EducationLevel == "7th-8th") | (
-                                 ad_df_private_US.EducationLevel == "9th"), 'Education'] = 2
-    ad_df_private_US.loc[
-        (ad_df_private_US.EducationLevel == "Assoc-acdm") | (ad_df_private_US.EducationLevel == "Assoc-voc") | (
-                ad_df_private_US.EducationLevel == "Some-college") | (
-                ad_df_private_US.EducationLevel == "HS-grad"), 'Education'] = 2
-    ad_df_private_US.loc[ad_df_private_US.EducationLevel == "Bachelors", 'Education'] = 3
-    ad_df_private_US.loc[(ad_df_private_US.EducationLevel == "Masters") | (
-            ad_df_private_US.EducationLevel == "Prof-school"), 'Education'] = 4
-    ad_df_private_US.loc[ad_df_private_US.EducationLevel == "Doctorate", 'Education'] = 5
+    adult_df.loc[(adult_df.EducationLevel == "10th") | (adult_df.EducationLevel == "11th") | (
+            adult_df.EducationLevel == "12th") | (adult_df.EducationLevel == "1st-4th") | (
+                                 adult_df.EducationLevel == "5th-6th")
+                         | (adult_df.EducationLevel == "7th-8th") | (
+                                 adult_df.EducationLevel == "9th"), 'Education'] = 2
+    adult_df.loc[
+        (adult_df.EducationLevel == "Assoc-acdm") | (adult_df.EducationLevel == "Assoc-voc") | (
+                adult_df.EducationLevel == "Some-college") | (
+                adult_df.EducationLevel == "HS-grad"), 'Education'] = 2
+    adult_df.loc[adult_df.EducationLevel == "Bachelors", 'Education'] = 3
+    adult_df.loc[(adult_df.EducationLevel == "Masters") | (
+            adult_df.EducationLevel == "Prof-school"), 'Education'] = 4
+    adult_df.loc[adult_df.EducationLevel == "Doctorate", 'Education'] = 5
 
-    return ad_df_private_US
+    return adult_df
 
 
 def probable_expected_salary(ad_df_private_US):
@@ -86,6 +103,13 @@ def probable_expected_salary(ad_df_private_US):
         For probable expected value between 0 to 50 : Expected Salary is less than or equal to 50k
         For probable expected value greater than 50 : Expected Salary is less greater than 50k
         :return: We return the ad_dataframe after finding probable expected value.
+
+        >>> ad_df = pd.read_csv('adult.csv', delimiter=',', header=None, encoding='UTF-8')
+        >>> ad_df.columns = ['Age', 'JobType', 'EmpID', 'EducationLevel', 'Level', 'MaritalStatus', 'JobPosition', 'MaritalStatus_Desc', 'Race', 'Gender', 'Column_1', 'Column_2', 'Column_3', 'Location', 'ExpectedSalary']
+        >>> adult_df = ad_df[['Age', 'JobType', 'EducationLevel','Level', 'JobPosition', 'MaritalStatus','Location', 'Gender', 'ExpectedSalary']].sort_values(by='Age', ascending=True)
+        >>> sim_df = club_similar_values(adult_df)
+        >>> probable_expected_salary(sim_df)
+        ValueError: cannot set a frame with no defined index and a scalar
     """
     ad_df_private_US = ad_df_private_US.dropna(subset=['Education Field'])
     ad_df_private_US.loc[ad_df_private_US.ExpectedSalary == "<=50K", 'Probable Salary Value'] = 0
@@ -99,6 +123,17 @@ def merge_datasets(Ibm_df, ad_dataframe):
     """
         In this function, we are merging both the datasets based on Age, EducationField, Gender and Education.
         :return: We return the sorted_dataframe after merging.
+
+        >>> df_1 = pd.read_csv('IBM_HR_data.csv', delimiter=',', encoding='UTF-8')
+        >>> df_2 = pd.read_csv('adult.csv', delimiter=',', header=None, encoding='UTF-8')
+        >>> df_2.columns = ['Age', 'JobType', 'EmpID', 'EducationLevel', 'Level', 'MaritalStatus','JobPosition', 'MaritalStatus_Desc', 'Race','Gender', 'Column_1', 'Column_2','Column_3', 'Location', 'ExpectedSalary']
+        >>> ad_df_1 = df_2[['Age', 'JobType', 'EducationLevel', 'Level', 'JobPosition', 'MaritalStatus','Location', 'Gender', 'ExpectedSalary']].sort_values(by='Age', ascending=True)
+        >>> ad_df_1.shape != (32563, 9)
+        False
+        >>> sim_df = club_similar_values(ad_df_1)
+        >>> merged = merge_datasets(df_1, sim_df)
+        >>> merged.shape
+        (0, 43)
     """
     Ibm_df['EducationField'] = Ibm_df['EducationField'].str.strip()
     merged_dataframe = pd.merge(Ibm_df, ad_dataframe, how='inner',
@@ -179,9 +214,9 @@ def salary_attrition_analysis2(salary_less):
 def total_values_travel(travel_df, frequency):
     """
 
-    :param travel_df:
-    :param frequency:
-    :return:
+    :param travel_df: Dataframe containing values for IBM
+    :param frequency: Travel frequency to be passed
+    :return: count of values with attrition and total count
 
     >>> Ibm_df = pd.read_csv('IBM_HR_data.csv', delimiter=',', encoding='UTF-8')
     >>> freq = total_values_travel(Ibm_df, 'Travel_Frequently')
@@ -207,9 +242,9 @@ def total_values_travel(travel_df, frequency):
 def attrition_values(df, freq, attr_value):
     """
 
-    :param df:
-    :param freq:
-    :param attr_value:
+    :param df: Merged df with IBM
+    :param freq: Business travel frequency
+    :param attr_value: Either 'Yes' or 'No'
     :return:
 
     >>> Ibm_df = pd.read_csv('IBM_HR_data.csv', delimiter=',', encoding='UTF-8')
@@ -230,7 +265,12 @@ def create_table():
     :return: table based on business travel frequency
     >>> data_row = [('A', 10), ('B', 20), ('C', 40)]
     >>> t2 = Table(rows=data_row, names=('Keys', 'Values'))
-
+    >>> print(t2)
+    Keys Values
+    ---- ------
+       A     10
+       B     20
+       C     40
     """
     t = Table()
     data_rows = [('Travel_Rarely',
