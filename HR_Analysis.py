@@ -102,25 +102,6 @@ def club_similar_values(adult_df):
     return adult_df
 
 
-def create_boxplot(data, x_val, y_val, t):
-    """
-    This function creates a boxplot which is required for analysis of hypotheses 2
-    which focuses on majorly education level, age and their relation with Salary Earned
-    :param data: dataframe to be plotted based on x and y values
-    :param x_val: values to be plotted against
-    :param y_val: values to be plotted against
-    :return: Boxplot based on given values
-
-    >>> ad_df = pd.read_csv('adult.csv', delimiter=',', header=None, encoding='UTF-8')
-    >>> ad_df.columns = ['Age', 'JobType', 'EmpID', 'EducationLevel', 'Level', 'MaritalStatus', 'JobPosition', 'MaritalStatus_Desc', 'Race', 'Gender', 'Column_1', 'Column_2', 'Column_3', 'Location', 'ExpectedSalary']
-    >>> adult_df = ad_df[['Age', 'JobType', 'EducationLevel','Level', 'JobPosition', 'MaritalStatus','Location', 'Gender', 'ExpectedSalary']].sort_values(by='Age', ascending=True)
-    >>> ad_data = adult_df[['Age', 'EducationLevel', 'ExpectedSalary']].sort_values(by='Age', ascending=True)
-    >>> create_boxplot(ad_data, [0], [0], 'Test')
-    """
-    figure = px.box(data, x=x_val, y=y_val, title=t)
-    return figure.show()
-
-
 def probable_expected_salary(ad_df_private_US):
     """
         In this function, we are finding probable expected salary values based on age group degree, education field and gender.
@@ -130,8 +111,6 @@ def probable_expected_salary(ad_df_private_US):
 
         >>> ad_df = pd.read_csv('adult.csv', delimiter=',', header=None, encoding='UTF-8')
         >>> ad_df.columns = ['Age', 'JobType', 'EmpID', 'EducationLevel', 'Level', 'MaritalStatus', 'JobPosition', 'MaritalStatus_Desc', 'Race', 'Gender', 'Column_1', 'Column_2', 'Column_3', 'Location', 'ExpectedSalary']
-        >>> adult_df = ad_df[['Age', 'JobType', 'EducationLevel','Level', 'JobPosition', 'MaritalStatus','Location', 'Gender', 'ExpectedSalary']].sort_values(by='Age', ascending=True)
-        >>> sim_df = club_similar_values(adult_df)
     """
     ad_df_private_US = ad_df_private_US.dropna(subset=['Education Field'])
     ad_df_private_US.loc[ad_df_private_US.ExpectedSalary == "<=50K", 'Probable Salary Value'] = 0
@@ -325,7 +304,7 @@ def attrition_values(df, freq, attr_value):
 
 def create_table():
     """
-    Returns a table based on given input values
+
     :return: table based on business travel frequency
     >>> data_row = [('A', 10), ('B', 20), ('C', 40)]
     >>> t2 = Table(rows=data_row, names=('Keys', 'Values'))
@@ -375,23 +354,6 @@ if __name__ == '__main__':
     print("\n Attrition percentage of people with salary expectation greater than 50k : \n")
     print(salary_data_greater_attr)
     print("---------------------------------------------------------------------\n\n")
-
-    """
-        Box plots for hypotheses 2.1 Age vs. Salary
-    """
-    ad_df_specific = adult_df[['Age', 'EducationLevel', 'ExpectedSalary']].sort_values(by='Age', ascending=True)
-    x = "ExpectedSalary"
-    y = "Age"
-    title = "Age by individual's earnings ($ >50K or <= 50K) based on adult dataset"
-    create_boxplot(ad_df_specific, x, y, title)
-
-    """
-        Box plot for hypotheses 2.2 Education vs. Salary
-    """
-    x = "ExpectedSalary"
-    y = "EducationLevel"
-    title = "Salary Earned by Education Level after grouping adult data"
-    create_boxplot(ad_df_specific, x, y, title)
 
     # calculating percentages when attrition has happened in each category
     # for travel rarely
@@ -453,6 +415,7 @@ if __name__ == '__main__':
     percent4 = round(att_no1 / total_att1, 2)
 
     # displaying the distances for each
+
     labels = ['Attrition when distance is less than 25', 'No attrition when distance is less than 25',
               'Attrition when distance is more than 25', 'No attrition when distance is more than 25']
     values = [perecent1, percent2, perecent3, percent4]
