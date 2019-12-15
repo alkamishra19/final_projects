@@ -6,10 +6,20 @@
 > Kunal Pachori (kunalpachori),
 > Urvashi Rawat (Urvashi0903)
 
-The details for the project are as below: 
+About the project : 
+The project aims at undestanding different parameters that contribute to an employee's decision of leaving an organization. Several factors like Education , Age, Income , Expected salary , Distance from home , Business travel , Department were considered to perform the analsis. 
+
+About the dataset : 
+We have used different data sets and combined the information to perform analysis over several variables that play as a contributing factor on an employee's attrition. 
+
+(The data set links are attached at the end of file ) 
+
+Hypothesis and analysis : 
 
 ### Hypothesis 1 :
 If the salary of the employee is less than expected, it leads to attrition
+
+Analysis : After careful observations , it can be observed that slaary as alone cannot be a parameter that leads to the decision of attrition. The gap between expected salary and earned salary was filled for some employees and did not come near to expectation for some, but in both the cases attrition has been observed. 
 
 We have two datasets where in we would merge them based on the age and the education level. One of the datasets has the actual income and the other has a generic expected income.
 
@@ -26,6 +36,8 @@ We have two datasets where in we would merge them based on the age and the educa
 ### Hypothesis 2 : 
 Relationship between income and age is stronger than that between income and education.
 
+Analysis : An analysis between income , age and education helped us to determine that there is a stronger correlation between income and education than between income and age. Income and education together as an entity determine the chances of attrition.
+
 Box plots representing data from the adult dataset as per age vs income and education vs income
 ![Education vs Attrition](https://github.com/kunalpachori/final_projects/blob/master/Analysis/Analysis_2_1.png)
 ![Education vs Attrition](https://github.com/kunalpachori/final_projects/blob/master/Analysis/Analysis_2_2.png)
@@ -37,6 +49,8 @@ Box plots for IBM data with education level and age vs income
 
 ### Hypothesis 3 : 
 Do factors such as business travel , department have any effect on the decision of an employee leaving the organization.
+
+Analysis : Employees who frequently travel mostly leave an organization. This can also be affected by the department for which an employee works. After careful consideration of all factors and visualizing the data it could be observed that departments like Sales and R&D have more attrition for frequently travelling employees than the other departments. 
 
 Heatmap for all the factors:
 ![Factors vs Attrition](https://github.com/kunalpachori/final_projects/blob/master/Analysis/Analysis_3.png)
@@ -63,6 +77,8 @@ Analysis Graphs :
 ### Hypothesis 4: 
 To analyze if the ‘distance from home’ a factor that leads to attrition. 
 
+Analysis : If the distance between office and home is greater or lesser , it is not noticed as possible reason of emplpyee attrition. It can be observed that equal percentage of people leave the organization or stay in the organization irrespective of the distance from home. 
+
 1. When the distance from home is less than 25 
 ![Distance from home < 25](https://github.com/kunalpachori/final_projects/blob/master/Analysis/Analysis%204.1.png)
 
@@ -71,6 +87,10 @@ To analyze if the ‘distance from home’ a factor that leads to attrition.
 
 3. Comparing the two to understand the percentage of people who stay and leave an organization
 ![Distance from home and attrition](https://github.com/kunalpachori/final_projects/blob/master/Analysis/Analysis%204.3%20.png) 
+
+
+
+
 
 ### Dataset links:
 
